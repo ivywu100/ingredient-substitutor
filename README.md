@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# readme.md
 
-## Getting Started
+# Baking Ingredient Substitution Engine
 
-First, run the development server:
+## Overview
+
+This web app helps users find ingredient substitutions for baking recipes (cakes, cookies, bread, etc.) and explains the effects on the recipe using GPT-generated explanations. It minimizes LLM usage through deterministic rules and Redis caching.
+
+## Features
+
+* Select recipe type, ingredient, and amount
+* Optional dietary constraints (e.g., vegan)
+* Returns substitution(s) with converted amounts
+* Directional effects: rise, spread, texture
+* GPT-generated explanations (cached to reduce API calls)
+* Lightweight, deterministic rules-based engine
+
+## Tech Stack
+
+* **Next.js App Router + TypeScript**
+* **TailwindCSS + Material UI**
+* **Next.js API routes** for server logic
+* **Static JSON file** for substitution list
+* **Redis** for caching LLM responses
+* **OpenAI GPT** for explanation generation
+* **Vercel** deployment
+
+## Architecture
+
+1. User selects ingredient and recipe type
+2. Server API route looks up substitution in static JSON
+3. Constructs a deterministic cache key
+4. Checks Redis:
+
+   * If hit → returns cached explanation
+   * If miss → calls GPT → stores explanation in Redis → returns explanation
+
+## Installation & Setup
+
+1. Clone repo:
+
+```bash
+git clone <repo-url>
+cd baking-substitution-app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Configure environment variables:
+
+```
+OPENAI_API_KEY=<your_api_key>
+REDIS_URL=<redis_connection_string>
+```
+
+4. Run locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Deploy on Vercel using standard Next.js deployment workflow.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Select recipe type (cake, cookie, bread, other)
+2. Select the ingredient to substitute
+3. Enter the amount
+4. Optional: select dietary constraints
+5. Click **Find Substitution**
+6. See recommended substitutions, directional effects, and GPT explanation
 
-## Learn More
+## Cost Optimization
 
-To learn more about Next.js, take a look at the following resources:
+* Deterministic rules handle most lookups → no LLM cost
+* Redis caches GPT-generated explanations → repeated queries do not incur extra cost
+* Short prompts minimize token usage
+* Precompute explanations for common substitutions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Add new ingredients/substitutions in `/data/substitutions.json`
+* Keep JSON normalized with `recipeTypes`, `tags`, `effects`, `confidence`
+* LLM prompts and caching are handled in `pages/api/substitute.ts`
 
-## Deploy on Vercel
+## Resume-Friendly Framing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> Built a hybrid rules-based + AI baking substitution engine using Next.js, Redis caching, and GPT, optimizing for cost while delivering high-quality explanations and UX.
