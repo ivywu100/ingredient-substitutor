@@ -81,12 +81,8 @@ npm run dev
 * Short prompts minimize token usage
 * Precompute explanations for common substitutions
 
-## Contributing
+## Scaling and Maintenance
 
 * Add new ingredients/substitutions in `/data/substitutions.json`
 * Keep JSON normalized with `recipeTypes`, `tags`, `effects`, `confidence`
 * LLM prompts and caching are handled in `pages/api/substitute.ts`
-
-## Resume-Friendly Framing
-
-> Built a hybrid rules-based + AI baking substitution engine using Next.js, Redis caching, and GPT, optimizing for cost while delivering high-quality explanations and UX.
