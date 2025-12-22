@@ -24,18 +24,18 @@ describe('SubstitutionEngine', () => {
   });
 
   it('should return substitutes for a valid ingredient and recipe type', () => {
-    const substitutes = engine.getSubstitutes('butter', 'cake' as RecipeType);
+    const substitutes = engine.getSubstitutes('butter', ['cake'] as RecipeType[]);
     expect(substitutes.length).toBeGreaterThan(0);
     expect(substitutes[0]).toBeInstanceOf(Substitute);
   });
 
   it('should filter substitutes by tags', () => {
-    const substitutes = engine.getSubstitutes('butter', 'cake' as RecipeType, ['vegan']);
+    const substitutes = engine.getSubstitutes('butter', ['cake'] as RecipeType[], ['vegan']);
     expect(substitutes.every(s => s.tags.includes('vegan'))).toBe(true);
   });
 
   it('should return empty array for unsupported recipe type', () => {
-    const substitutes = engine.getSubstitutes('butter', 'pancakes' as RecipeType);
+    const substitutes = engine.getSubstitutes('butter', ['pancakes'] as RecipeType[]);
     expect(substitutes).toHaveLength(0);
   });
 
@@ -64,38 +64,38 @@ describe('SubstitutionEngine', () => {
   });
 
   test("getSubstitutes filters by recipe type", () => {
-    const subsCake = engine.getSubstitutes("eggs", "cake");
+    const subsCake = engine.getSubstitutes("eggs", ["cake"]);
     subsCake.forEach((s) => {
-      expect(engine.getIngredient("eggs")!.recipeTypes).toContain("cake");
+      expect(engine.getIngredient("eggs")!.substitutes[0].recipeTypes).toContain("cake");
     });
 
-    const subsBread = engine.getSubstitutes("eggs", "bread");
+    const subsBread = engine.getSubstitutes("eggs", ["bread"]);
     subsBread.forEach((s) => {
-      expect(engine.getIngredient("eggs")!.recipeTypes).toContain("bread");
+      expect(engine.getIngredient("eggs")!.substitutes[0].recipeTypes).toContain("bread");
     });
   });
 
   test("getSubstitutes filters by tags", () => {
-    const subsVegan = engine.getSubstitutes("eggs", "bread", ["vegan"]);
+    const subsVegan = engine.getSubstitutes("eggs", ["bread"], ["vegan"]);
     expect(subsVegan.length).toBeGreaterThan(0);
     subsVegan.forEach((s) => {
       expect(s.tags).toContain("vegan");
     });
 
-    const subsVegetarian = engine.getSubstitutes("eggs", "bread", ["vegetarian"]);
+    const subsVegetarian = engine.getSubstitutes("eggs", ["bread"], ["vegetarian"]);
     expect(subsVegetarian.length).toBe(0); // eggs substitutes in bread are only vegan
   });
 
   test("getSubstitutes filters out low confidence", () => {
     // Let's assume there's a substitute with confidence < 0.6
-    const subs = engine.getSubstitutes("eggs", "cookie");
+    const subs = engine.getSubstitutes("eggs", ["cookie"]);
     subs.forEach((s) => {
       expect(s.confidence).toBeGreaterThanOrEqual(0.6);
     });
   });
 
   test("getSubstitutes sorts by confidence and number of effects", () => {
-    const subs = engine.getSubstitutes("eggs", "cookie");
+    const subs = engine.getSubstitutes("eggs", ["cookie"]);
     for (let i = 1; i < subs.length; i++) {
       const prev = subs[i - 1];
       const curr = subs[i];
@@ -121,7 +121,7 @@ describe('SubstitutionEngine', () => {
   });
 
   test("substitute includes optional instructions if present", () => {
-    const subs = engine.getSubstitutes("buttermilk", "cake");
+    const subs = engine.getSubstitutes("buttermilk", ["cake"]);
     const withInstructions = subs.filter((s) => s.instructions);
     withInstructions.forEach((s) => {
       expect(typeof s.instructions).toBe("string");

@@ -1,10 +1,10 @@
 [
 	{
 		"ingredient": "baking powder",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "cream of tartar + baking soda",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "baking powder",
 			  "quantity": 1,
@@ -23,10 +23,10 @@
 	  },
 	  {
 		"ingredient": "baking soda",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "baking powder",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "baking soda",
 			  "quantity": 0.25,
@@ -36,20 +36,17 @@
 			  { "ingredient": "baking powder", "quantity": 1, "unit": "teaspoon" }
 			],
 			"tags": ["vegetarian", "gluten free"],
-			"effects": {
-			  "rise": "less",
-			  "flavor": "more tangy"
-			},
+			"effects": { "rise": "less", "flavor": "more tangy" },
 			"confidence": 0.8
 		  }
 		]
 	  },
 	  {
 		"ingredient": "bread crumbs",
-		"recipeTypes": ["bread", "other"],
 		"substitutes": [
 		  {
 			"name": "ground oats or cereal",
+			"recipeTypes": ["bread", "other"],
 			"baseAmount": {
 			  "ingredient": "bread crumbs",
 			  "quantity": 1,
@@ -66,10 +63,10 @@
 	  },
 	  {
 		"ingredient": "bread flour",
-		"recipeTypes": ["bread", "other"],
 		"substitutes": [
 		  {
 			"name": "all-purpose flour",
+			"recipeTypes": ["bread", "other"],
 			"baseAmount": {
 			  "ingredient": "bread flour",
 			  "quantity": 1,
@@ -79,20 +76,17 @@
 			  { "ingredient": "all-purpose flour", "quantity": 1, "unit": "cup" }
 			],
 			"tags": ["vegetarian", "gluten free"],
-			"effects": {
-			  "rise": "slightly less",
-			  "texture": "slightly denser"
-			},
+			"effects": { "rise": "slightly less", "texture": "slightly denser" },
 			"confidence": 0.9
 		  }
 		]
 	  },
 	  {
 		"ingredient": "brown sugar",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "granulated sugar + molasses",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "brown sugar",
 			  "quantity": 1,
@@ -103,20 +97,17 @@
 			  { "ingredient": "molasses", "quantity": 1, "unit": "tablespoon" }
 			],
 			"tags": ["vegetarian", "gluten free"],
-			"effects": {
-			  "flavor": "slightly less rich",
-			  "moisture": "slightly less"
-			},
+			"effects": { "flavor": "slightly less rich", "moisture": "slightly less" },
 			"confidence": 0.9
 		  }
 		]
 	  },
 	  {
 		"ingredient": "butter",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "coconut oil",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "butter",
 			  "quantity": 1,
@@ -126,13 +117,12 @@
 			  { "ingredient": "coconut oil", "quantity": 1, "unit": "cup" }
 			],
 			"tags": ["vegan", "gluten free"],
-			"effects": {
-			  "texture": "slightly denser"
-			},
+			"effects": { "texture": "slightly denser" },
 			"confidence": 0.8
 		  },
 		  {
 			"name": "lard or margarine",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "butter",
 			  "quantity": 1,
@@ -142,18 +132,17 @@
 			  { "ingredient": "lard or margarine", "quantity": 1, "unit": "cup" }
 			],
 			"tags": ["gluten free"],
-			"effects": {
-			},
+			"effects": {},
 			"confidence": 0.7
 		  }
 		]
 	  },
 	  {
 		"ingredient": "buttermilk",
-		"recipeTypes": ["cake", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "yogurt",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "buttermilk",
 			  "quantity": 1,
@@ -168,6 +157,7 @@
 		  },
 		  {
 			"name": "milk + vinegar or lemon juice",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "buttermilk",
 			  "quantity": 1,
@@ -186,10 +176,10 @@
 	  },
 	  {
 		"ingredient": "cake flour",
-		"recipeTypes": ["cake"],
 		"substitutes": [
 		  {
 			"name": "all-purpose flour + cornstarch",
+			"recipeTypes": ["cake"],
 			"baseAmount": {
 			  "ingredient": "cake flour",
 			  "quantity": 1,
@@ -200,19 +190,17 @@
 			  { "ingredient": "cornstarch", "quantity": 2, "unit": "tablespoon" }
 			],
 			"tags": ["vegetarian", "gluten free"],
-			"effects": {
-			  "texture": "slightly denser"
-			},
+			"effects": { "texture": "slightly denser" },
 			"confidence": 0.9
 		  }
 		]
 	  },
 	  {
 		"ingredient": "cornstarch",
-		"recipeTypes": ["cake", "cookie", "other"],
 		"substitutes": [
 		  {
 			"name": "all-purpose flour",
+			"recipeTypes": ["cake", "cookie", "other"],
 			"baseAmount": {
 			  "ingredient": "cornstarch",
 			  "quantity": 1,
@@ -229,10 +217,10 @@
 	  },
 	  {
 		"ingredient": "cream of tartar",
-		"recipeTypes": ["cake", "cookie"],
 		"substitutes": [
 		  {
 			"name": "lemon juice",
+			"recipeTypes": ["cake", "cookie"],
 			"baseAmount": {
 			  "ingredient": "cream of tartar",
 			  "quantity": 0.25,
@@ -249,14 +237,14 @@
 	  },
 	  {
 		"ingredient": "eggs",
-		"recipeTypes": ["cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "flax egg",
+			"recipeTypes": ["cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "egg",
 			  "quantity": 1,
-			  "unit": "unit"
+			  "unit": ""
 			},
 			"substitution": [
 			  { "ingredient": "ground flaxseed", "quantity": 1, "unit": "tablespoon" },
@@ -275,10 +263,10 @@
 	  },
 	  {
 		"ingredient": "evaporated milk",
-		"recipeTypes": ["cake", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "half-and-half",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "evaporated milk",
 			  "quantity": 1,
@@ -295,10 +283,10 @@
 	  },
 	  {
 		"ingredient": "half-and-half",
-		"recipeTypes": ["cake", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "milk + cream",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "half-and-half",
 			  "quantity": 1.0,
@@ -314,6 +302,7 @@
 		  },
 		  {
 			"name": "non-dairy coffee creamer",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "half-and-half",
 			  "quantity": 1.0,
@@ -330,10 +319,10 @@
 	  },
 	  {
 		"ingredient": "heavy cream",
-		"recipeTypes": ["cake", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "milk + butter",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "heavy cream",
 			  "quantity": 1,
@@ -349,6 +338,7 @@
 		  },
 		  {
 			"name": "butter + milk or half-and-half",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "heavy cream",
 			  "quantity": 1,
@@ -366,10 +356,10 @@
 	  },
 	  {
 		"ingredient": "honey",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "alternative liquid sweeteners",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "honey",
 			  "quantity": 1,
@@ -386,10 +376,10 @@
 	  },
 	  {
 		"ingredient": "lemon juice",
-		"recipeTypes": ["cake", "cookie", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "apple cider vinegar",
+			"recipeTypes": ["cake", "cookie", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "lemon juice",
 			  "quantity": 1,
@@ -406,10 +396,10 @@
 	  },
 	  {
 		"ingredient": "powdered sugar",
-		"recipeTypes": ["cake", "cookie", "other"],
 		"substitutes": [
 		  {
 			"name": "ground granulated sugar",
+			"recipeTypes": ["cake", "cookie", "other"],
 			"baseAmount": {
 			  "ingredient": "powdered sugar",
 			  "quantity": 0.5,
@@ -427,10 +417,10 @@
 	  },
 	  {
 		"ingredient": "semi-sweet chocolate",
-		"recipeTypes": ["cake", "cookie", "other"],
 		"substitutes": [
 		  {
 			"name": "unsweetened chocolate + sugar",
+			"recipeTypes": ["cake", "cookie", "other"],
 			"baseAmount": {
 			  "ingredient": "semi-sweet chocolate",
 			  "quantity": 1,
@@ -446,6 +436,7 @@
 		  },
 		  {
 			"name": "cocoa + sugar + butter or oil",
+			"recipeTypes": ["cake", "cookie", "other"],
 			"baseAmount": {
 			  "ingredient": "semi-sweet chocolate",
 			  "quantity": 1,
@@ -464,10 +455,10 @@
 	  },
 	  {
 		"ingredient": "sour cream",
-		"recipeTypes": ["cake", "bread", "other"],
 		"substitutes": [
 		  {
 			"name": "plain yogurt",
+			"recipeTypes": ["cake", "bread", "other"],
 			"baseAmount": {
 			  "ingredient": "sour cream",
 			  "quantity": 1,
