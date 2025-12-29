@@ -10,21 +10,40 @@ const openai = new OpenAI({
 	apiKey: process.env.OPENAI_API_KEY!,
 });
 
-function isValidExplanation(obj: any): obj is GptExplanationResponse {
+function isValidExplanation(obj: unknown): obj is GptExplanationResponse {
 	if (!obj || typeof obj !== "object") return false;
-
-	const validVerdicts = ["VALID", "RISKY", "INVALID"];
-
+  
+	const validVerdicts = ["VALID", "RISKY", "INVALID"] as const;
+  
+	// Use type assertion for object
+	const o = obj as Record<string, unknown>;
+  
 	return (
-		validVerdicts.includes(obj.verdict) &&
-		Array.isArray(obj.reasons) &&
-		obj.reasons.every((r: any) => typeof r === "string") &&
-		Array.isArray(obj.practicalNotes) &&
-		obj.practicalNotes.every((n: any) => typeof n === "string")
+	  validVerdicts.includes(o.verdict as typeof validVerdicts[number]) &&
+	  Array.isArray(o.reasons) &&
+	  o.reasons.every((r) => typeof r === "string") &&
+	  Array.isArray(o.practicalNotes) &&
+	  o.practicalNotes.every((n) => typeof n === "string")
 	);
+  }
+
+interface IngredientAmount {
+	quantity: number | string;
+	unit: string;
+	ingredient: string;
 }
 
-function createCacheKey(payload: any) {
+interface ExplanationPayload {
+	ingredient: string;
+	substitute: string;
+	baseAmount: IngredientAmount;
+	substitution: IngredientAmount[];
+	recipeTypes: string[];
+	instructions?: string;
+	effects?: Record<string, string>;
+}
+
+function createCacheKey(payload: ExplanationPayload) {
 	const normalized = {
 		ingredient: payload.ingredient.toLowerCase(),
 		substitute: payload.substitute.toLowerCase(),
@@ -95,7 +114,7 @@ export async function POST(req: NextRequest) {
 	- ${baseAmount.quantity} ${baseAmount.unit} ${baseAmount.ingredient}
 
 	Proposed substitute:
-	${substitution.map((s: any) => `- ${s.quantity} ${s.unit} ${s.ingredient}`).join("\n")}
+	${substitution.map((s: IngredientAmount) => `- ${s.quantity} ${s.unit} ${s.ingredient}`).join("\n")}
 
 	Additional substitute instructions:
 	${instructions ? instructions : `None`}

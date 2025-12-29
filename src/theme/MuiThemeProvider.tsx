@@ -9,12 +9,15 @@ export function MuiThemeProviderWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  const [isDark, setIsDark] = useState(false);
+  // Initialize state based on the current DOM class
+  const [isDark, setIsDark] = useState(() =>
+    typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false
+  );
 
   useEffect(() => {
-    // Detect Tailwind dark class
     const root = document.documentElement;
-    setIsDark(root.classList.contains("dark"));
 
     const observer = new MutationObserver(() => {
       setIsDark(root.classList.contains("dark"));
