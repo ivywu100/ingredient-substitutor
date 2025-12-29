@@ -158,9 +158,9 @@ export async function POST(req: NextRequest) {
 
 	// Save to cache
 	const ttlMap: Record<GptExplanationResponse["verdict"], number> = {
-		VALID: 60 * 60 * 24 * 7,
-		RISKY: 60 * 60 * 24 * 3,
-		INVALID: 60 * 60 * 24,
+		VALID: 60 * 60 * 24 * 7, // 1 week
+		RISKY: 60 * 60 * 24 * 3, // 3 days
+		INVALID: 60 * 60 * 24,   // 1 day
 	};
 
 	let expirationTime = ttlMap.INVALID; // default
