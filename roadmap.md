@@ -70,12 +70,7 @@ A Next.js web app allowing users to find ingredient substitutions for baking rec
 * Ensure max 1 LLM call per request
 * Add UX polish (loading indicators, directional arrows, clear warnings)
 
-### Day 6 (Optional): Precompute Popular Explanations
-
-* Generate LLM explanations offline for common substitutions
-* Store in JSON or Redis to minimize runtime LLM usage
-
-### Day 7: Deployment & Documentation
+### Day 6: Deployment & Documentation
 
 * Deploy on Vercel
 * Test API routes and Redis cache

@@ -6,12 +6,11 @@ import { DietaryPreferenceSelector } from "@/components/DietaryPreferenceSelecto
 import { IngredientSelector } from "@/components/IngredientSelector";
 import { ALL_RECIPE_TYPES, RecipeTypeSelector } from "@/components/RecipeTypeSelector";
 import { GptExplanationResponse, ResultsCard } from "@/components/ResultsCard";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Snackbar, Alert, Button, Tooltip, Paper, Typography, Box } from "@mui/material";
 import { engine } from "@/backend/SubstitutionEngine";
 import { Substitute } from "@/backend/Substitute";
-
-// Import your substitution engine
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Home() {
   const theme = useTheme();
@@ -25,10 +24,77 @@ export default function Home() {
   const [rateLimitOpen, setRateLimitOpen] = useState(false);
   const [gptCooldownUntil, setGptCooldownUntil] = useState<number | null>(null);
   const isInCooldown = gptCooldownUntil !== null && Date.now() < gptCooldownUntil;
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const hasHydratedFromUrl = useRef(false);
+
+  useEffect(() => {
+    if (hasHydratedFromUrl.current) return;
+
+    const ingredientParam = searchParams.get("ingredient");
+    const recipesParam = searchParams.get("recipes");
+
+    if (!ingredientParam || !recipesParam) return;
+
+    hasHydratedFromUrl.current = true;
+
+    const tagsParam = searchParams.get("tags");
+
+    const ingredient = decodeURIComponent(ingredientParam);
+
+    const recipes = recipesParam
+      .split(",")
+      .map(decodeURIComponent) as RecipeType[];
+  
+    const tags = tagsParam
+      ? tagsParam.split(",").map(decodeURIComponent)
+      : [];
+  
+    setIngredient(ingredient);
+    setRecipeType(recipes);
+    setPref(tags);
+    const substitutes = engine.getSubstitutes(
+      ingredientParam,
+      recipes,
+      tags
+    );
+
+    setResults(substitutes);
+    setShowResults(true);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (!gptCooldownUntil) return;
+
+    const remaining = gptCooldownUntil - Date.now();
+    if (remaining <= 0) {
+      setGptCooldownUntil(null);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setGptCooldownUntil(null);
+    }, remaining);
+
+    return () => clearTimeout(timer);
+  }, [gptCooldownUntil]);
+
 
   const handleSubmit = () => {
     if (!ingredient) return;
 
+    const params = new URLSearchParams();
+
+    params.set("ingredient", ingredient);
+    params.set("recipes", recipeType.join(","));
+
+    if (pref.length > 0) {
+      params.set("tags", pref.join(","));
+    }
+
+    router.replace(`?${params.toString()}`, {
+      scroll: false,
+    });
     // Query your substitution engine
     const substitutes = engine.getSubstitutes(
       ingredient,
@@ -65,10 +131,6 @@ export default function Home() {
 
         const cooldownMs = 10_000;
         setGptCooldownUntil(Date.now() + cooldownMs);
-
-        setTimeout(() => {
-          setGptCooldownUntil(null);
-        }, cooldownMs);
 
         return;
       }
@@ -179,7 +241,14 @@ export default function Home() {
                 <Typography variant="h5" fontWeight={600}>
                   Substitutes for {ingredient}
                 </Typography>
-                <Button variant="text" size="small" onClick={() => setShowResults(false)}>
+                <Button
+                  variant="text"
+                  size="small"
+                  onClick={() => {
+                    router.replace("?", { scroll: false });
+                    setShowResults(false);
+                  }}
+                >
                   ← Back
                 </Button>
               </Box>

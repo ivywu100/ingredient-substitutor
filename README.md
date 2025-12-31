@@ -1,5 +1,3 @@
-# readme.md
-
 # Baking Ingredient Substitution Engine
 
 ## Overview
@@ -37,33 +35,83 @@ This web app helps users find ingredient substitutions for baking recipes (cakes
 
 ## Installation & Setup
 
-1. Clone repo:
+### Prerequisites
+
+- Node.js 18+ and npm
+- OpenAI API key
+- Upstash Redis account (or compatible Redis instance)
+
+### Step-by-Step Setup
+
+1. **Clone the repository:**
 
 ```bash
 git clone <repo-url>
-cd baking-substitution-app
+cd ingredient-substitutor
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-3. Configure environment variables:
+3. **Configure environment variables:**
 
-```
-OPENAI_API_KEY=<your_api_key>
-REDIS_URL=<redis_connection_string>
+Create a `.env.local` file in the root directory:
+
+```bash
+# OpenAI API Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Upstash Redis Configuration
+UPSTASH_REDIS_REST_URL=your_upstash_redis_url_here
+UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token_here
 ```
 
-4. Run locally:
+**Getting your credentials:**
+- **OpenAI API Key**: Get one from [OpenAI Platform](https://platform.openai.com/api-keys)
+- **Upstash Redis**: Sign up at [Upstash](https://upstash.com/) and create a Redis database. Copy the REST URL and token from the dashboard.
+
+4. **Run the development server:**
 
 ```bash
 npm run dev
 ```
 
-5. Deploy on Vercel using standard Next.js deployment workflow.
+The app will be available at `http://localhost:3000`
+
+### Production Build
+
+To build and run the production version:
+
+```bash
+# Build the application
+npm run build
+
+# Start the production server
+npm start
+```
+
+### Testing
+
+Run the test suite:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Linting
+
+Check code quality:
+
+```bash
+npm run lint
+```
 
 ## Usage
 
@@ -81,8 +129,40 @@ npm run dev
 * Short prompts minimize token usage
 * Precompute explanations for common substitutions
 
+## Project Structure
+
+```
+ingredient-substitutor/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   └── explanation/   # GPT explanation endpoint
+│   ├── page.tsx           # Main page component
+│   └── layout.tsx         # Root layout
+├── backend/               # Core business logic
+│   ├── Ingredient.ts      # Ingredient model
+│   ├── Substitute.ts      # Substitute model
+│   └── SubstitutionEngine.ts  # Main substitution engine
+├── components/            # React components
+│   ├── DietaryPreferenceSelector.tsx
+│   ├── IngredientSelector.tsx
+│   ├── RecipeTypeSelector.tsx
+│   ├── ResultsCard.tsx
+│   └── ThemeToggle.tsx
+├── data/                  # Static data
+│   └── substitutions.json # Substitution database
+├── lib/                   # Utilities
+│   ├── rateLimit.ts      # Rate limiting logic
+│   └── redis.ts          # Redis client configuration
+├── tests/                 # Test files
+│   ├── Ingredient.test.ts
+│   ├── Substitute.test.ts
+│   └── SubstitutionEngine.test.ts
+└── src/theme/            # Material UI theme configuration
+```
+
 ## Scaling and Maintenance
 
 * Add new ingredients/substitutions in `/data/substitutions.json`
 * Keep JSON normalized with `recipeTypes`, `tags`, `effects`, `confidence`
-* LLM prompts and caching are handled in `pages/api/substitute.ts`
+* LLM prompts and caching are handled in `/app/api/explanation/route.ts`
+* Rate limiting is configured in `/lib/rateLimit.ts` (currently 5 requests per 60 seconds per IP)
