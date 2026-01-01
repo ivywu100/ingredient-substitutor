@@ -154,6 +154,40 @@
 					"texture": "slightly denser, less chewy"
 				},
 				"confidence": 0.9
+			},
+			{
+				"name": "all-purpose flour + vital wheat gluten",
+				"recipeTypes": [
+					"yeast bread",
+					"other"
+				],
+				"baseAmount": {
+					"ingredient": "bread flour",
+					"quantity": 1,
+					"unit": "cup"
+				},
+				"substitution": [
+					{
+						"ingredient": "all-purpose flour",
+						"quantity": 1,
+						"unit": "cup"
+					},
+					{
+						"ingredient": "vital wheat gluten",
+						"quantity": 1,
+						"unit": "tsp"
+					}
+				],
+				"tags": [
+					"vegan",
+					"vegetarian"
+				],
+				"instructions": "Sift AP flour and vital wheat gluten together; dough may require 1–2 tsp additional water",
+				"effects": {
+					"rise": "similar",
+					"texture": "slightly denser, slightly chewier"
+				},
+				"confidence": 0.9
 			}
 		]
 	},
