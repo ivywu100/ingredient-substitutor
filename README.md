@@ -147,6 +147,7 @@ ingredient-substitutor/
 │   ├── IngredientSelector.tsx
 │   ├── RecipeTypeSelector.tsx
 │   ├── ResultsCard.tsx
+│   ├── SearchHistoryDrawer.tsx
 │   └── ThemeToggle.tsx
 ├── data/                  # Static data
 │   └── substitutions.json # Substitution database
@@ -166,3 +167,7 @@ ingredient-substitutor/
 * Keep JSON normalized with `recipeTypes`, `tags`, `effects`, `confidence`
 * LLM prompts and caching are handled in `/app/api/explanation/route.ts`
 * Rate limiting is configured in `/lib/rateLimit.ts` (currently 5 requests per 60 seconds per IP)
+
+## License
+
+MIT © 2026 Maxwell Lo
