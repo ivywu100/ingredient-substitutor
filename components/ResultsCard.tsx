@@ -43,7 +43,6 @@ type ResultsCardProps = {
 	gptDisabled?: boolean;
 };
 
-// Helper to convert a decimal to a simplified fraction string
 function toFraction(num: number): string {
 	const tolerance = 1e-6;
 
@@ -201,7 +200,7 @@ export function ResultsCard({ substitute, onFetchExplanation, gptDisabled }: Res
 					p: 2,
 					borderRadius: 1,
 					backgroundColor: theme.palette.grey[50],
-					position: 'relative', // make it the relative container for absolute badge
+					position: 'relative',
 				}}
 			>
 				{/* AI-generated badge with tooltip */}

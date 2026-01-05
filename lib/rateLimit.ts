@@ -16,7 +16,7 @@ export async function rateLimit(
   const count = await redis.incr(windowKey);
 
   if (count === 1) {
-    // First request → set expiry
+    // First request -> set expiry
     await redis.expire(windowKey, windowSeconds);
   }
 

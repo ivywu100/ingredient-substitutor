@@ -34,7 +34,7 @@ export function DietaryPreferenceSelector({
       disableCloseOnSelect
       getOptionLabel={(option) => option}
       renderOption={(props, option, { selected }) => {
-        const { key, ...rest } = props; // remove key from spread
+        const { key, ...rest } = props;
         return (
           <li key={key} {...rest} className={`${selected ? "bg-blue-100" : ""}`}>
             <Checkbox

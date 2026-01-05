@@ -22,7 +22,7 @@ export class Ingredient {
     return this.substitutes.some(sub => sub.recipeTypes.includes(recipeType));
   }
 
-  // Optionally, get all substitutes for a given recipe type
+  // Get all substitutes for a given recipe type
   getSubstitutesForRecipe(recipeType: RecipeType): Substitute[] {
     return this.substitutes.filter(sub => sub.recipeTypes.includes(recipeType));
   }

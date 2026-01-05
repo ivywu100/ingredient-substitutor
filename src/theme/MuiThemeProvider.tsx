@@ -9,7 +9,6 @@ export function MuiThemeProviderWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  // Initialize state based on the current DOM class
   const [isDark, setIsDark] = useState(() =>
     typeof document !== "undefined"
       ? document.documentElement.classList.contains("dark")

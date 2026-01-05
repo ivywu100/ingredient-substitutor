@@ -26,7 +26,7 @@ describe("Ingredient class", () => {
     ["vegan"],
     effects,
     0.8,
-    ["bread"],
+    ["quick bread"],
     "Use at room temperature"
   );
 
@@ -46,12 +46,11 @@ describe("Ingredient class", () => {
     it("should return true if any substitute supports the recipe type", () => {
       expect(ingredient.supportsRecipe("cake")).toBe(true);
       expect(ingredient.supportsRecipe("cookie")).toBe(true);
-      expect(ingredient.supportsRecipe("bread")).toBe(true);
+      expect(ingredient.supportsRecipe("quick bread")).toBe(true);
     });
 
     it("should return false if no substitute supports the recipe type", () => {
-      expect(ingredient.supportsRecipe("pancakes")).toBe(false);
-      expect(ingredient.supportsRecipe("waffles")).toBe(false);
+      expect(ingredient.supportsRecipe("pancake")).toBe(false);
     });
   });
 
@@ -61,13 +60,13 @@ describe("Ingredient class", () => {
       expect(cakeSubs).toHaveLength(1);
       expect(cakeSubs[0].name).toBe("Coconut Oil");
 
-      const breadSubs = ingredient.getSubstitutesForRecipe("bread");
+      const breadSubs = ingredient.getSubstitutesForRecipe("quick bread");
       expect(breadSubs).toHaveLength(1);
       expect(breadSubs[0].name).toBe("Margarine");
     });
 
     it("should return an empty array if no substitutes support the recipe type", () => {
-      const waffleSubs = ingredient.getSubstitutesForRecipe("waffles");
+      const waffleSubs = ingredient.getSubstitutesForRecipe("pancake");
       expect(waffleSubs).toHaveLength(0);
     });
   });

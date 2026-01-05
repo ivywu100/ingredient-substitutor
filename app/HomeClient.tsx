@@ -121,7 +121,7 @@ export default function Home() {
 		router.replace(`?${params.toString()}`, {
 			scroll: false,
 		});
-		// Query your substitution engine
+		
 		const substitutes = engine.getSubstitutes(
 			ingredient,
 			recipeType,

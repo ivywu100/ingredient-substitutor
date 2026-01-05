@@ -2,7 +2,6 @@
 
 import { createTheme } from "@mui/material/styles";
 
-// Warm, baking-themed light colors
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -28,7 +27,6 @@ export const lightTheme = createTheme({
   },
 });
 
-// Dark mode inversion of baking colors
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",

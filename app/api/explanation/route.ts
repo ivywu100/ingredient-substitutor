@@ -15,7 +15,6 @@ function isValidExplanation(obj: unknown): obj is GptExplanationResponse {
   
 	const validVerdicts = ["VALID", "RISKY", "INVALID"] as const;
   
-	// Use type assertion for object
 	const o = obj as Record<string, unknown>;
   
 	return (
@@ -156,7 +155,7 @@ export async function POST(req: NextRequest) {
 		],
 		temperature: 0.2,
 	});
-	console.log(response.usage); // { prompt_tokens, completion_tokens, total_tokens }
+	// console.log(response.usage); // { prompt_tokens, completion_tokens, total_tokens }
 	const raw = response.choices[0].message.content;
 	let parsed;
 	try {

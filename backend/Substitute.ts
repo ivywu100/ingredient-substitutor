@@ -12,7 +12,7 @@ export class Substitute {
   baseAmount: IngredientAmount;
   substitution: IngredientAmount[];
 
-  recipeTypes: string[]; // Added to match new JSON structure
+  recipeTypes: string[];
 
   instructions?: string;
   tags: string[];
@@ -26,7 +26,7 @@ export class Substitute {
     tags: string[],
     effects: Effects,
     confidence: number,
-    recipeTypes: string[], // Added parameter
+    recipeTypes: string[],
     instructions?: string
   ) {
     this.name = name;

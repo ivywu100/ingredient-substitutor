@@ -35,7 +35,7 @@ export function IngredientSelector({
           const regex = new RegExp(inputValue, "i");
           return options.filter((opt) => regex.test(opt));
         } catch {
-          // Invalid regex → fallback to substring match
+          // Invalid regex -> fallback to substring match
           return options.filter((opt) =>
             opt.toLowerCase().includes(inputValue.toLowerCase())
           );
