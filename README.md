@@ -4,7 +4,7 @@
 
 This web app helps users find ingredient substitutions for baking recipes (cakes, cookies, bread, etc.) and explains the effects on the recipe using GPT-generated explanations. It minimizes LLM usage through deterministic rules and Redis caching.
 
-Application is deployed at <https://ingredient-substituter.vercel.app/>
+Application is deployed at <https://ingredient-substituter.vercel.app/>.
 
 ## Features
 
