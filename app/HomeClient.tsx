@@ -15,6 +15,7 @@ import { getSearchHistory, saveSearch } from "@/backend/SearchHistory";
 import { SearchHistoryItem } from "@/backend/SearchHistoryItem";
 import HistoryIcon from "@mui/icons-material/History";
 import { SearchHistoryDrawer } from "@/components/SearchHistoryDrawer";
+import Footer from "./Footer";
 
 export default function Home() {
 	const theme = useTheme();
@@ -121,7 +122,7 @@ export default function Home() {
 		router.replace(`?${params.toString()}`, {
 			scroll: false,
 		});
-		
+
 		const substitutes = engine.getSubstitutes(
 			ingredient,
 			recipeType,
@@ -390,6 +391,7 @@ export default function Home() {
 					<HistoryIcon />
 				</IconButton>
 			</Box>
+			<Footer />
 		</Box>
 
 	);
