@@ -1,6 +1,7 @@
 import { lightTheme } from "@/src/theme/mui-theme";
 import { ThemeProvider } from "@mui/material";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
