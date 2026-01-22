@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
 	const { success } = await rateLimit(
 		ip,
-		5,    // requests
+		20,    // requests
 		60    // per 60 seconds
 	);
 
